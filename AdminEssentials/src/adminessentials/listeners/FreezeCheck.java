@@ -1,5 +1,6 @@
 package adminessentials.listeners;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,15 +26,16 @@ public class FreezeCheck implements Listener {
 		
 		if (!aePlayer.isFrozen()) return;
 		
-		int fromX = e.getFrom().getBlockX();
-		int fromY = e.getFrom().getBlockY();
-		int fromZ = e.getFrom().getBlockZ();
+		double fromX = e.getFrom().getX();
+		double fromY = e.getFrom().getY();
+		double fromZ = e.getFrom().getZ();
 		
-		int toX = e.getTo().getBlockX();
-		int toY = e.getTo().getBlockY();
-		int toZ = e.getTo().getBlockZ();
+		double toX = e.getTo().getX();
+		double toY = e.getTo().getY();
+		double toZ = e.getTo().getZ();
 		
 		if (fromX != toX || fromY != toY || fromZ != toZ) {
+			player.teleport(new Location(player.getWorld(), fromX, fromY, fromZ));
 			e.setCancelled(true);
 		}
 		

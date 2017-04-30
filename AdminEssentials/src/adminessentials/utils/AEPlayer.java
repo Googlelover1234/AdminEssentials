@@ -26,6 +26,7 @@ public class AEPlayer {
 	
 	public AEPlayer(Player player) {
 		this.player = player;
+		instances.add(this);
 	}
 	
     public static AEPlayer getInstance(Player player) {

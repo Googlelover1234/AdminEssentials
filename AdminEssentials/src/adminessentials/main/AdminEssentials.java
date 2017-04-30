@@ -4,6 +4,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import adminessentials.cmds.FreezeCommand;
+import adminessentials.listeners.FreezeCheck;
 import adminessentials.utils.ConfigManager;
 import adminessentials.utils.ServerHandler;
 import adminessentials.utils.Settings;
@@ -36,6 +37,8 @@ public class AdminEssentials extends JavaPlugin {
 		Settings.initSettings();
 		
 		framework.registerCommands(new FreezeCommand());
+		
+		registerPluginEvents(new FreezeCheck());
 		
 	}
 	
