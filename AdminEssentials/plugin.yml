@@ -1,0 +1,5 @@
+name: AdminEssentials
+version: 2.0
+main: adminessentials.main.AdminEssentials
+description: A tool for administrators to make their job easier in-game.
+author: Lemonbus
