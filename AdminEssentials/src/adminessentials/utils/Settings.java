@@ -33,8 +33,6 @@ public class Settings {
 		ADMIN_FREEZE = initSetting("messages.admin_freeze");
 		ADMIN_UNFREEZE = initSetting("messages.admin_unfreeze");
 		
-		System.out.println(SERVER_NAME);
-		
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -47,7 +45,7 @@ public class Settings {
 			YamlConfiguration tempConfig = YamlConfiguration.loadConfiguration(tempStream);
 			
 			if (!tempConfig.contains(path)) {
-				throw new NullPointerException();
+				throw new NullPointerException("Could not find the path specified");
 			}
 			
 			AdminEssentials.get().getConfigurationFile().set(path, tempConfig.get(path));
