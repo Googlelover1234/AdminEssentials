@@ -14,39 +14,41 @@ import org.bukkit.util.Vector;
 import adminessentials.main.AdminEssentials;
 
 /**
-	 * 
-	 * Created on Apr 29, 2017 by Jeremy Gooch.
-	 * 
-	 */
+ * 
+ * Created on Apr 29, 2017 by Jeremy Gooch.
+ * 
+ */
 
 public class ConfigManager {
-	
+
 	private File file;
 	private FileConfiguration config;
 
 	public ConfigManager(String fileName, String dir) {
-		
-		if (!AdminEssentials.get().getDataFolder().exists()) {
-			
-			AdminEssentials.get().getDataFolder().mkdir();
-			
-		}
-		
-		if (dir != null && !dir.isEmpty()) {
-            File dirFolder = new File("plugins" + File.separator + "AdminEssentials" + File.separator + dir);
-            if (!dirFolder.exists()) {
-                dirFolder.mkdir();
-            }
-        }
 
-		file = new File(AdminEssentials.get().getDataFolder(), (dir == null ? fileName + ".yml" : File.separator + dir + File.separator + fileName + ".yml"));
-		
+		if (!AdminEssentials.get().getDataFolder().exists()) {
+
+			AdminEssentials.get().getDataFolder().mkdir();
+
+		}
+
+		if (dir != null && !dir.isEmpty()) {
+			File dirFolder = new File("plugins" + File.separator + "AdminEssentials" + File.separator + dir);
+			if (!dirFolder.exists()) {
+				dirFolder.mkdir();
+			}
+		}
+
+		file = new File(AdminEssentials.get().getDataFolder(),
+				(dir == null ? fileName + ".yml" : File.separator + dir + File.separator + fileName + ".yml"));
+
 		if (!file.exists()) {
 			try {
-				 if (dir != null) {
-					 file.createNewFile();
-				 } else AdminEssentials.get().saveResource(fileName + ".yml", false);
-				 
+				if (dir != null) {
+					file.createNewFile();
+				} else
+					AdminEssentials.get().saveResource(fileName + ".yml", false);
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -162,7 +164,7 @@ public class ConfigManager {
 		AdminEssentials.get().saveResource(defaults, false);
 
 	}
-	
+
 	public ItemStack getItemStack(String string) {
 		return config.getItemStack(string);
 	}
@@ -170,6 +172,7 @@ public class ConfigManager {
 	public Vector getVector(String string) {
 		return config.getVector(string);
 	}
+
 	public Long getLong(String s) {
 		return config.getLong(s);
 	}
