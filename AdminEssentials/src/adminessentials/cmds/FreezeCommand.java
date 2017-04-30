@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import adminessentials.utils.AEPlayer;
 import adminessentials.utils.Chat;
+import adminessentials.utils.Settings;
 import adminessentials.utils.command.Command;
 import adminessentials.utils.command.CommandArgs;
 
@@ -42,11 +43,13 @@ public class FreezeCommand {
 		
 		if (player.isFrozen()) {
 			
-			// send them a message eventually
+			Chat.getInstance().messagePlayer(queriedPlayer, Settings.PLAYER_FROZEN);
+			Chat.getInstance().messagePlayer(args.getSender(), Settings.ADMIN_FREEZE);
 			
 		} else {
 			
-			// here too
+			Chat.getInstance().messagePlayer(queriedPlayer, Settings.PLAYER_UNFROZEN);
+			Chat.getInstance().messagePlayer(args.getSender(), Settings.ADMIN_UNFREEZE);
 			
 		}
 		

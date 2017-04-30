@@ -1,2 +1,8 @@
 settings:
-  server_name: "MyServer"
+  server_name: 'MyServer'
+  message_prefix: '&8[&b%server_name%&8]&a'
+messages:
+  player_frozen: '%message_prefix% You have been frozen by an administrator'
+  player_unfrozen: '%message_prefix% You have been unfrozen'
+  admin_freeze: '%message_prefix% You have frozen %player%'
+  admin_unfreeze: '%message_prefix% You have allowed %player% to move again'

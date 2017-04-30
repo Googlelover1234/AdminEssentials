@@ -35,8 +35,7 @@ public class FreezeCheck implements Listener {
 		double toZ = e.getTo().getZ();
 		
 		if (fromX != toX || fromY != toY || fromZ != toZ) {
-			player.teleport(new Location(player.getWorld(), fromX, fromY, fromZ));
-			e.setCancelled(true);
+			player.teleport(new Location(player.getWorld(), fromX, fromY, fromZ, e.getTo().getYaw(), e.getTo().getPitch()));
 		}
 		
 	}
