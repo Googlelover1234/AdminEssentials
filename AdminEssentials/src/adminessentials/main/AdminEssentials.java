@@ -4,6 +4,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import adminessentials.utils.ConfigManager;
+import adminessentials.utils.ServerHandler;
 import adminessentials.utils.Settings;
 import adminessentials.utils.command.CommandFramework;
 
@@ -21,10 +22,13 @@ public class AdminEssentials extends JavaPlugin {
 	
 	private ConfigManager config;
 	
+	private ServerHandler serverHandler;
+	
 	public void onEnable() {
 		
 		instance = this;
 		framework = new CommandFramework(this);
+		serverHandler = new ServerHandler(getServer());
 		
 		config = new ConfigManager("config", null);
 		
@@ -59,6 +63,10 @@ public class AdminEssentials extends JavaPlugin {
 	
 	public ConfigManager getConfigurationFile() {
 		return config;
+	}
+	
+	public ServerHandler getServerHandler() {
+		return serverHandler;
 	}
 	
 }

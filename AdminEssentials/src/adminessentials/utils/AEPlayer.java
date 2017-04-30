@@ -22,13 +22,10 @@ public class AEPlayer {
 	private Player player;
 	
 	private boolean frozen;
-	
 	private boolean vanished;
 	
 	public AEPlayer(Player player) {
-		
 		this.player = player;
-		
 	}
 	
     public static AEPlayer getInstance(Player player) {
