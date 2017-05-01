@@ -22,6 +22,9 @@ public class Settings {
 	public static String PLAYER_UNFROZEN;
 	public static String ADMIN_FREEZE;
 	public static String ADMIN_UNFREEZE;
+
+	public static String CHAT_CLEARED;
+	public static String CHAT_CURRENTLY_MUTED;
 	
 	public static void initSettings() {
 		
@@ -32,7 +35,9 @@ public class Settings {
 		PLAYER_UNFROZEN = initSetting("messages.player_unfrozen");
 		ADMIN_FREEZE = initSetting("messages.admin_freeze");
 		ADMIN_UNFREEZE = initSetting("messages.admin_unfreeze");
-		
+		CHAT_CLEARED = initSetting("messages.chat_cleared");
+		CHAT_CURRENTLY_MUTED = initSetting("messages.chat_currently_muted");
+
 	}
 	
 	@SuppressWarnings("deprecation")

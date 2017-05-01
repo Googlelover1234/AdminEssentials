@@ -1,5 +1,8 @@
 package adminessentials.main;
 
+import adminessentials.cmds.ClearChatCommand;
+import adminessentials.cmds.MuteChatCommand;
+import adminessentials.listeners.AsyncPlayerChat;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,8 +40,11 @@ public class AdminEssentials extends JavaPlugin {
 		Settings.initSettings();
 		
 		framework.registerCommands(new FreezeCommand());
+		framework.registerCommands(new ClearChatCommand());
+		framework.registerCommands(new MuteChatCommand());
 		
 		registerPluginEvents(new FreezeCheck());
+		registerPluginEvents(new AsyncPlayerChat());
 		
 	}
 	
