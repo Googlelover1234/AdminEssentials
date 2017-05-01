@@ -38,6 +38,12 @@ public class Settings {
 		CHAT_CLEARED = initSetting("messages.chat_cleared");
 		CHAT_CURRENTLY_MUTED = initSetting("messages.chat_currently_muted");
 
+		PLAYER_FROZEN.replace("%message_prefix%", MESSAGE_PREFIX);
+		PLAYER_UNFROZEN.replace("%message_prefix%", MESSAGE_PREFIX);
+		ADMIN_FREEZE.replace("%message_prefix%", MESSAGE_PREFIX);
+		ADMIN_UNFREEZE.replace("%message_prefix%", MESSAGE_PREFIX);
+		CHAT_CLEARED.replace("%message_prefix%", MESSAGE_PREFIX);
+		CHAT_CURRENTLY_MUTED.replace("%message_prefix%", MESSAGE_PREFIX);
 	}
 	
 	@SuppressWarnings("deprecation")
