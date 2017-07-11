@@ -15,11 +15,13 @@ public class AsyncPlayerChat implements Listener {
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
 
-        if (event.getPlayer().hasPermission("adminessentials.mutechat.bypass")) return;
-        if (!AdminEssentials.get().getServerHandler().isChatMuted()) return;
-
-        event.setCancelled(true);
-        Chat.getInstance().messagePlayer(event.getPlayer(), Settings.CHAT_CURRENTLY_MUTED);
-
+        if (!AdminEssentials.get().getServerHandler().isChatMuted()) {
+        	
+        	if (event.getPlayer().hasPermission("adminessentials.mutechat.bypass")) return;
+        	
+            event.setCancelled(true);
+            Chat.getInstance().messagePlayer(event.getPlayer(), Settings.get().CHAT_CURRENTLY_MUTED);
+        	
+        }
     }
 }

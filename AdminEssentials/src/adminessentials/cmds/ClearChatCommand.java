@@ -1,12 +1,6 @@
 package adminessentials.cmds;
 
 import adminessentials.main.AdminEssentials;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
-import adminessentials.utils.AEPlayer;
-import adminessentials.utils.Chat;
-import adminessentials.utils.Settings;
 import adminessentials.utils.command.Command;
 import adminessentials.utils.command.CommandArgs;
 
@@ -18,11 +12,11 @@ import adminessentials.utils.command.CommandArgs;
 
 public class ClearChatCommand {
 
-    @Command(name = "clearchat", description = "clears the entire server chat.", usage = "/clearchat", permission = "adminessentials.clearchat")
+    @Command(name = "clearchat", aliases = { "cc", "chatclear" }, description = "clears the entire server chat.", usage = "/clearchat", permission = "adminessentials.clearchat")
     public void freezeCommand(CommandArgs args) {
-
-        AdminEssentials.get().getServerHandler().clearChat();
-
+    	
+        AdminEssentials.get().getServerHandler().clearChat(args.getSender().getName());
+        
     }
 
 }

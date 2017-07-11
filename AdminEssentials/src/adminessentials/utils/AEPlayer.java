@@ -3,6 +3,7 @@ package adminessentials.utils;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 /**
@@ -22,7 +23,7 @@ public class AEPlayer {
 	private Player player;
 	
 	private boolean frozen;
-	private boolean vanished;
+	private boolean adminMode;
 	
 	public AEPlayer(Player player) {
 		this.player = player;
@@ -53,12 +54,24 @@ public class AEPlayer {
 		this.frozen = frozen;
 	}
 	
-	public boolean isVanished() {
-		return vanished;
+	public boolean inAdminMode() {
+		return adminMode;
 	}
 	
-	public void setVanished(boolean vanished) {
-		this.vanished = vanished;
+	public void setAdminMode(boolean adminMode) {
+		
+		this.adminMode = adminMode;
+		
+		for (Player online : Bukkit.getOnlinePlayers()) {
+			
+			if (AEPlayer.getInstance(online).inAdminMode() && this.getPlayer().hasPermission("adminessentials.seeadmins")) continue;
+			
+			online.hidePlayer(this.getPlayer());
+			
+		}
+		
+		Chat.getInstance().messagePlayer(this.getPlayer(), adminMode ? Settings.get().ADMIN_MODE_ENABLED : Settings.get().ADMIN_MODE_DISABLED);
+		
 	}
 	
 }

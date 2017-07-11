@@ -1,13 +1,17 @@
 package adminessentials.main;
 
-import adminessentials.cmds.ClearChatCommand;
-import adminessentials.cmds.MuteChatCommand;
-import adminessentials.listeners.AsyncPlayerChat;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import adminessentials.cmds.Admin;
+import adminessentials.cmds.ClearChatCommand;
 import adminessentials.cmds.FreezeCommand;
+import adminessentials.cmds.MuteChatCommand;
+import adminessentials.listeners.AsyncPlayerChat;
 import adminessentials.listeners.FreezeCheck;
+import adminessentials.listeners.adminmode.AdminBreakBlock;
+import adminessentials.listeners.adminmode.AdminDamageEntity;
+import adminessentials.listeners.adminmode.AdminPickupItem;
 import adminessentials.utils.ConfigManager;
 import adminessentials.utils.ServerHandler;
 import adminessentials.utils.Settings;
@@ -37,14 +41,18 @@ public class AdminEssentials extends JavaPlugin {
 		
 		config = new ConfigManager("config", null);
 		
-		Settings.initSettings();
+		Settings.get().initSettings();
 		
 		framework.registerCommands(new FreezeCommand());
 		framework.registerCommands(new ClearChatCommand());
 		framework.registerCommands(new MuteChatCommand());
+		framework.registerCommands(new Admin());
 		
 		registerPluginEvents(new FreezeCheck());
 		registerPluginEvents(new AsyncPlayerChat());
+		registerPluginEvents(new AdminPickupItem());
+		registerPluginEvents(new AdminBreakBlock());
+		registerPluginEvents(new AdminDamageEntity());
 		
 	}
 	
@@ -55,14 +63,8 @@ public class AdminEssentials extends JavaPlugin {
 		
 	}
 	
-	private void registerPluginEvents(Listener... listeners) {
-		
-		for (Listener listener : listeners) {
-			
-			getServer().getPluginManager().registerEvents(listener, this);
-			
-		}
-		
+	private void registerPluginEvents(Listener listener) {
+		getServer().getPluginManager().registerEvents(listener, this);
 	}
 	
 	public static AdminEssentials get() {

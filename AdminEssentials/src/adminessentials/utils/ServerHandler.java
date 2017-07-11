@@ -31,11 +31,19 @@ public class ServerHandler {
 		return chatMuted;
 	}
 	
-	public void setChatMuted(boolean mute) {
+	public void setChatMuted(boolean mute, String sender) {
+		
 		chatMuted = mute;
+		
+		String rawString = mute ? Settings.get().CHAT_MUTE_ENABLED : Settings.get().CHAT_MUTE_DISABLED;
+		
+		String formattedString = rawString.replace("%player%", sender);
+		
+		Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', formattedString));
+		
 	}
 	
-	public void clearChat() {
+	public void clearChat(String sender) {
 
 		for (Player on : Bukkit.getOnlinePlayers()) {
 
@@ -43,13 +51,13 @@ public class ServerHandler {
 
 			for (int i = 0; i < 120; i++) {
 
-				on.sendMessage("     ");
+				on.sendMessage("");
 
 			}
 
 		}
 
-		Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', Settings.CHAT_CLEARED));
+		Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', Settings.get().CHAT_CLEARED.replaceAll("%player%", sender)));
 	}
 
 }

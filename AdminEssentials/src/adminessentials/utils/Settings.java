@@ -15,39 +15,63 @@ import adminessentials.main.AdminEssentials;
 
 public class Settings {
 	
-	public static String SERVER_NAME;
-	public static String MESSAGE_PREFIX;
+	private Settings() { }
 	
-	public static String PLAYER_FROZEN;
-	public static String PLAYER_UNFROZEN;
-	public static String ADMIN_FREEZE;
-	public static String ADMIN_UNFREEZE;
+	private static Settings instance = new Settings();
+	
+	public static Settings get() {
+		return instance;
+	}
+	
+	public String MESSAGE_PREFIX;
+	
+	public String PLAYER_FROZEN;
+	public String PLAYER_UNFROZEN;
+	public String ADMIN_FREEZE;
+	public String ADMIN_UNFREEZE;
 
-	public static String CHAT_CLEARED;
-	public static String CHAT_CURRENTLY_MUTED;
+	public String CHAT_CLEARED;
+	public String CHAT_CURRENTLY_MUTED;
 	
-	public static void initSettings() {
+	public String CHAT_MUTE_ENABLED;
+	public String CHAT_MUTE_DISABLED;
+	
+	public String ADMIN_MODE_ENABLED;
+	public String ADMIN_MODE_DISABLED;
+	
+	public String ADMIN_MODE_ENABLE_OTHERS;
+	public String ADMIN_MODE_DISABLE_OTHERS;
+	
+	public void initSettings() {
 		
-		SERVER_NAME = initSetting("settings.server_name");
 		MESSAGE_PREFIX = initSetting("settings.message_prefix");
 		
-		PLAYER_FROZEN = initSetting("messages.player_frozen");
-		PLAYER_UNFROZEN = initSetting("messages.player_unfrozen");
-		ADMIN_FREEZE = initSetting("messages.admin_freeze");
-		ADMIN_UNFREEZE = initSetting("messages.admin_unfreeze");
-		CHAT_CLEARED = initSetting("messages.chat_cleared");
-		CHAT_CURRENTLY_MUTED = initSetting("messages.chat_currently_muted");
-
-		PLAYER_FROZEN.replace("%message_prefix%", MESSAGE_PREFIX);
-		PLAYER_UNFROZEN.replace("%message_prefix%", MESSAGE_PREFIX);
-		ADMIN_FREEZE.replace("%message_prefix%", MESSAGE_PREFIX);
-		ADMIN_UNFREEZE.replace("%message_prefix%", MESSAGE_PREFIX);
-		CHAT_CLEARED.replace("%message_prefix%", MESSAGE_PREFIX);
-		CHAT_CURRENTLY_MUTED.replace("%message_prefix%", MESSAGE_PREFIX);
+		PLAYER_FROZEN = initMessageString("messages.player_frozen");
+		PLAYER_UNFROZEN = initMessageString("messages.player_unfrozen");
+		ADMIN_FREEZE = initMessageString("messages.admin_freeze");
+		ADMIN_UNFREEZE = initMessageString("messages.admin_unfreeze");
+		CHAT_CLEARED = initMessageString("messages.chat_cleared");
+		CHAT_CURRENTLY_MUTED = initMessageString("messages.chat_currently_muted");
+		
+		CHAT_MUTE_ENABLED = initMessageString("messages.chat_mute_enabled");
+		CHAT_MUTE_DISABLED = initMessageString("messages.chat_mute_disabled");
+		
+		ADMIN_MODE_ENABLED = initMessageString("messages.admin_mode_enabled");
+		ADMIN_MODE_DISABLED = initMessageString("messages.admin_mode_disabled");
+		
+		ADMIN_MODE_ENABLE_OTHERS = initMessageString("messages.admin_mode_enable_others");
+		ADMIN_MODE_DISABLE_OTHERS = initMessageString("messages.admin_mode_disable_others");
+		
+	}
+	
+	private String initMessageString(String path) {
+		
+		return initSetting(path).replace("%message_prefix%", MESSAGE_PREFIX);
+		
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static String initSetting(String path) {
+	private String initSetting(String path) {
 		
 		if (!AdminEssentials.get().getConfigurationFile().contains(path)) { // check the config file directly from the jar in case there were any updates
 			

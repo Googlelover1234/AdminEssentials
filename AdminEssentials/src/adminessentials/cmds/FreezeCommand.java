@@ -43,13 +43,13 @@ public class FreezeCommand {
 		
 		if (player.isFrozen()) {
 			
-			Chat.getInstance().messagePlayer(queriedPlayer, Settings.PLAYER_FROZEN);
-			Chat.getInstance().messagePlayer(args.getSender(), Settings.ADMIN_FREEZE);
+			Chat.getInstance().messagePlayer(queriedPlayer, Settings.get().PLAYER_FROZEN);
+			Chat.getInstance().messagePlayer(args.getSender(), Settings.get().ADMIN_FREEZE);
 			
 		} else {
 			
-			Chat.getInstance().messagePlayer(queriedPlayer, Settings.PLAYER_UNFROZEN);
-			Chat.getInstance().messagePlayer(args.getSender(), Settings.ADMIN_UNFREEZE);
+			Chat.getInstance().messagePlayer(queriedPlayer, Settings.get().PLAYER_UNFROZEN);
+			Chat.getInstance().messagePlayer(args.getSender(), Settings.get().ADMIN_UNFREEZE);
 			
 		}
 		
