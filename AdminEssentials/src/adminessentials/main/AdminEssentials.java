@@ -1,5 +1,6 @@
 package adminessentials.main;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -9,12 +10,15 @@ import adminessentials.cmds.FreezeCommand;
 import adminessentials.cmds.MuteChatCommand;
 import adminessentials.listeners.AsyncPlayerChat;
 import adminessentials.listeners.FreezeCheck;
+import adminessentials.listeners.PlayerJoin;
 import adminessentials.listeners.adminmode.AdminBreakBlock;
 import adminessentials.listeners.adminmode.AdminDamageEntity;
 import adminessentials.listeners.adminmode.AdminPickupItem;
 import adminessentials.utils.ConfigManager;
 import adminessentials.utils.ServerHandler;
 import adminessentials.utils.Settings;
+import adminessentials.utils.Updater;
+import adminessentials.utils.Updater.UpdateAvailability;
 import adminessentials.utils.command.CommandFramework;
 
 /**
@@ -32,6 +36,8 @@ public class AdminEssentials extends JavaPlugin {
 	private ConfigManager config;
 	
 	private ServerHandler serverHandler;
+	
+	private Updater updater;
 	
 	public void onEnable() {
 		
@@ -53,6 +59,15 @@ public class AdminEssentials extends JavaPlugin {
 		registerPluginEvents(new AdminPickupItem());
 		registerPluginEvents(new AdminBreakBlock());
 		registerPluginEvents(new AdminDamageEntity());
+		registerPluginEvents(new PlayerJoin());
+		
+		this.updater = new Updater(this, 85492); // DevBukkit project ID
+		
+		if (updater.checkForUpdates() == UpdateAvailability.UPDATE_AVAILABLE) {
+			
+			Bukkit.getLogger().warning("AdminEssentials [" + this.getDescription().getVersion() + "] is out of date! Version " + updater.getLatest() + " can be found here: " + "https://dev.bukkit.org/projects/adminessentials/files");
+			
+		}
 		
 	}
 	
@@ -81,6 +96,10 @@ public class AdminEssentials extends JavaPlugin {
 	
 	public ServerHandler getServerHandler() {
 		return serverHandler;
+	}
+	
+	public Updater getUpdateChecker() {
+		return updater;
 	}
 	
 }
