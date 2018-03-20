@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import adminessentials.main.AdminEssentials;
 import adminessentials.utils.Chat;
+import adminessentials.utils.Updater.UpdateAvailability;
 
 /**
 	 * 
@@ -22,6 +23,8 @@ public class PlayerJoin implements Listener {
 		Player player = event.getPlayer();
 		
 		if (!player.isOp()) return;
+		
+		if (AdminEssentials.get().getUpdateChecker().checkForUpdates() != UpdateAvailability.UPDATE_AVAILABLE) return;
 		
 		Chat.getInstance().messagePlayer(player, "&aAdminEssentials &6[" + AdminEssentials.get().getDescription().getVersion() + "] &bis out of date! "
 				+ "Version &6" + AdminEssentials.get().getUpdateChecker().getLatest() + " &bcan be found here: &ahttps://dev.bukkit.org/projects/adminessentials/files");

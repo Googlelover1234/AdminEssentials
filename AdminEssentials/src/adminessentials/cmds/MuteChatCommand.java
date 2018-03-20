@@ -14,7 +14,7 @@ public class MuteChatCommand {
 
     @Command(name = "mutechat", description = "disable or enable the server chat", usage = "/mutechat", permission = "adminessentials.mutechat")
     public void freezeCommand(CommandArgs args) {
-
+    	
         AdminEssentials.get().getServerHandler().setChatMuted(!AdminEssentials.get().getServerHandler().isChatMuted(), args.getSender().getName());
         
     }

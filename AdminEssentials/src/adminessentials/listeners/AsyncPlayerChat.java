@@ -14,7 +14,7 @@ public class AsyncPlayerChat implements Listener {
 
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
-
+    	
         if (!AdminEssentials.get().getServerHandler().isChatMuted()) {
         	
         	if (event.getPlayer().hasPermission("adminessentials.mutechat.bypass")) return;

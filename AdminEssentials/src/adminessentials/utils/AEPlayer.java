@@ -22,8 +22,9 @@ public class AEPlayer {
 	
 	private Player player;
 	
-	private boolean frozen;
-	private boolean adminMode;
+	private boolean frozen = false;
+	private boolean adminMode = false;
+	private boolean staffChat = false;
 	
 	public AEPlayer(Player player) {
 		this.player = player;
@@ -52,6 +53,14 @@ public class AEPlayer {
 	
 	public void setFrozen(boolean frozen) {
 		this.frozen = frozen;
+	}
+	
+	public void setStaffChat(boolean staffChat) {
+		this.staffChat = staffChat;
+	}
+	
+	public boolean inStaffChat() {
+		return staffChat;
 	}
 	
 	public boolean inAdminMode() {
